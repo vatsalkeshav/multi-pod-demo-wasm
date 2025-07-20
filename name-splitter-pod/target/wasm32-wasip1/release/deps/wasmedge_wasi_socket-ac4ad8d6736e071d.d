@@ -1,0 +1,10 @@
+/Users/dev/ilovezigang/name-splitter-pod/target/wasm32-wasip1/release/deps/wasmedge_wasi_socket-ac4ad8d6736e071d.d: /Users/dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmedge_wasi_socket-0.5.5/src/lib.rs /Users/dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmedge_wasi_socket-0.5.5/src/poll.rs /Users/dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmedge_wasi_socket-0.5.5/src/socket.rs /Users/dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmedge_wasi_socket-0.5.5/src/wasi_poll.rs
+
+/Users/dev/ilovezigang/name-splitter-pod/target/wasm32-wasip1/release/deps/libwasmedge_wasi_socket-ac4ad8d6736e071d.rlib: /Users/dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmedge_wasi_socket-0.5.5/src/lib.rs /Users/dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmedge_wasi_socket-0.5.5/src/poll.rs /Users/dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmedge_wasi_socket-0.5.5/src/socket.rs /Users/dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmedge_wasi_socket-0.5.5/src/wasi_poll.rs
+
+/Users/dev/ilovezigang/name-splitter-pod/target/wasm32-wasip1/release/deps/libwasmedge_wasi_socket-ac4ad8d6736e071d.rmeta: /Users/dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmedge_wasi_socket-0.5.5/src/lib.rs /Users/dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmedge_wasi_socket-0.5.5/src/poll.rs /Users/dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmedge_wasi_socket-0.5.5/src/socket.rs /Users/dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmedge_wasi_socket-0.5.5/src/wasi_poll.rs
+
+/Users/dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmedge_wasi_socket-0.5.5/src/lib.rs:
+/Users/dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmedge_wasi_socket-0.5.5/src/poll.rs:
+/Users/dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmedge_wasi_socket-0.5.5/src/socket.rs:
+/Users/dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmedge_wasi_socket-0.5.5/src/wasi_poll.rs:
