@@ -81,3 +81,24 @@ curl http://<node's-internal-ip>:30002/Aang
 # output :
 # Greetings Aang
 ```
+
+#### 4. Load balancing also works :
+```sh
+$ kubectl logs name-greeter-pod-deployment-659c98c5fc-5wzrz
+Server listening on address: 0.0.0.0:80
+Handling connection from: 0.0.0.0:58688
+Completed handling connection from 0.0.0.0:58688
+Handling connection from: 0.0.0.0:58702
+Completed handling connection from 0.0.0.0:58702
+Handling connection from: 0.0.0.0:45876
+Completed handling connection from 0.0.0.0:45876
+
+$ kubectl logs name-greeter-pod-deployment-659c98c5fc-94c69
+Server listening on address: 0.0.0.0:80
+Handling connection from: 0.0.0.0:49056
+Completed handling connection from 0.0.0.0:49056
+Handling connection from: 0.0.0.0:49064
+Completed handling connection from 0.0.0.0:49064
+Handling connection from: 0.0.0.0:45880
+Completed handling connection from 0.0.0.0:45880
+```
