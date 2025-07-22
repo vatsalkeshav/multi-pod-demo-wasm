@@ -5,10 +5,15 @@ use tokio::net::{TcpListener, TcpStream};
 async fn forward_to_greeter(
     name: &str,
 ) -> Result<String, Box<dyn std::error::Error + Send + Sync>> {
-    // connect to one of the greeter pods (using service name in Kubernetes)
-    // let address = "name-greeter-pod-service:80";
-    let address = "name-greeter-pod-service.default.svc.cluster.local:80";
-    let mut stream = match TcpStream::connect(address).await {
+    // connect to the greeter's clusterip service - for load balancing
+    // let address = "name-greeter-pod-service:70"; // not working for now :(
+    let greeter_host = env::var("NAME_GREETER_POD_SERVICE_SERVICE_HOST")
+        .expect("NAME_GREETER_POD_SERVICE_SERVICE_HOST not set");
+    let greeter_port =
+        env::var("NAME_GREETER_POD_SERVICE_SERVICE_PORT").unwrap_or("70".to_string());
+    let address = format!("{}:{}", greeter_host, greeter_port);
+
+    let mut stream = match TcpStream::connect(&address).await {
         Ok(s) => {
             println!("Successfully connected to greeter service");
             s
@@ -34,7 +39,7 @@ async fn forward_to_greeter(
         return Err("Empty response from greeter".into());
     }
 
-    // simple HTTP response parsing
+    // response parsing
     let response = String::from_utf8_lossy(&buffer);
     if let Some(body_start) = response.find("\r\n\r\n") {
         Ok(response[body_start + 4..].trim().to_string())
@@ -52,7 +57,7 @@ async fn handle_client(mut stream: TcpStream) {
 
     let mut buffer = [0; 1024];
 
-    // Read the request
+    // read request
     let bytes_read = match stream.read(&mut buffer).await {
         Ok(no_of_read_bytes) => {
             // sanity check
@@ -149,7 +154,7 @@ async fn main() {
     // holds an address
     let addr = env::args()
         .nth(1)
-        .unwrap_or_else(|| "0.0.0.0:90".to_string()); // splitter on port 90 // greeter on port 80
+        .unwrap_or_else(|| "0.0.0.0:90".to_string());
 
     // a TCP listener
     let listener = TcpListener::bind(&addr)

@@ -38,7 +38,7 @@ async fn handle_client(mut stream: TcpStream) {
         }
     };
 
-    // Convert the request to a string for processing
+    // convert request to string
     let request = match String::from_utf8(buffer[..bytes_read].to_vec()) {
         Ok(req) => req,
         Err(e) => {
@@ -47,7 +47,7 @@ async fn handle_client(mut stream: TcpStream) {
         }
     };
 
-    // Extract the path from the first line of the HTTP request
+    // extract path from the first line of the HTTP request
     let path = request
         .lines()
         .next()
@@ -56,10 +56,10 @@ async fn handle_client(mut stream: TcpStream) {
         .nth(1)
         .unwrap_or("/");
 
-    // Extract the name from the path (remove leading '/')
+    // extract the name from the path
     let name = path.trim_start_matches('/');
 
-    // Generate the appropriate response
+    // conditionally greet
     let response = if name.is_empty() {
         "HTTP/1.1 200 OK\r\n\r\nPlease provide a name in the URL, e.g., /Alice".to_string()
     } else if name.to_lowercase().starts_with('s') {
@@ -68,11 +68,11 @@ async fn handle_client(mut stream: TcpStream) {
         format!("HTTP/1.1 200 OK\r\n\r\nGreetings {}!", name)
     };
 
-    // Send the response (/Greeting)
-    // The Ok case of write_all is implicitly accepted as the code continues silently
+    // send response
     if let Err(e) = stream.write_all(response.as_bytes()).await {
         eprintln!("Failed to write response: {}", e);
     }
+    // the Ok case of write_all is implicitly accepted as the code continues silently
 
     println!("Completed handling connection from {}", peer_addr);
 }

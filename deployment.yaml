@@ -20,7 +20,7 @@ spec:
           command: ["name-splitter-pod.wasm"]
           ports:
             - containerPort: 90
-          # generic stuff below
+          # generic stuff below - maybe not needed
           env:
             - name: WASMEDGE_PLUGIN_PATH
               value: "/home/dev/.wasmedge/plugin"
@@ -104,7 +104,7 @@ spec:
   ports:
     - targetPort: 90
       port: 90
-      nodePort: 30001 # range : ( 30000 - 32767 )
+      nodePort: 30001
 
 ---
 apiVersion: apps/v1
@@ -129,7 +129,7 @@ spec:
           command: ["name-greeter-pod.wasm"]
           ports:
             - containerPort: 80
-          # generic stuff below
+          # generic stuff below - maybe not needed
           env:
             - name: WASMEDGE_PLUGIN_PATH
               value: "/home/dev/.wasmedge/plugin"
@@ -211,8 +211,24 @@ spec:
   selector:
     app: name-greeter-pod
   ports:
-    - port: 80
+    - port: 70
       targetPort: 80
+---
+
+# debugging purpose only - NodePort service for greeter pods
+apiVersion: v1
+kind: Service
+metadata:
+  name: name-greeter-pod-nodeport-service
+spec:
+  type: NodePort
+  selector:
+    app: name-greeter-pod
+  ports:
+    - targetPort: 80
+      port: 80
+      nodePort: 30002
+
 
 ---
 # runtime info
