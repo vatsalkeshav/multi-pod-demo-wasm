@@ -6,12 +6,16 @@ async fn forward_to_greeter(
     name: &str,
 ) -> Result<String, Box<dyn std::error::Error + Send + Sync>> {
     // connect to the greeter's clusterip service - for load balancing
-    // let address = "name-greeter-pod-service:70"; // not working for now :(
-    let greeter_host = env::var("NAME_GREETER_POD_SERVICE_SERVICE_HOST")
-        .expect("NAME_GREETER_POD_SERVICE_SERVICE_HOST not set");
-    let greeter_port =
-        env::var("NAME_GREETER_POD_SERVICE_SERVICE_PORT").unwrap_or("70".to_string());
-    let address = format!("{}:{}", greeter_host, greeter_port);
+
+    // -----------previous-approach-------------
+    // let greeter_host = env::var("NAME_GREETER_POD_SERVICE_SERVICE_HOST")
+    //     .expect("NAME_GREETER_POD_SERVICE_SERVICE_HOST not set");
+    // let greeter_port =
+    //     env::var("NAME_GREETER_POD_SERVICE_SERVICE_PORT").unwrap_or("70".to_string());
+    // let address = format!("{}:{}", greeter_host, greeter_port);
+
+    // --------------new-approach----------------
+    let address = "name-greeter-pod-service.gojoclan.svc.cluster.local:70"; // not working for now :(
 
     let mut stream = match TcpStream::connect(&address).await {
         Ok(s) => {
