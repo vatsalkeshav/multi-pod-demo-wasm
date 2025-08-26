@@ -1,34 +1,7 @@
 ## K3s-Demo: wasm-pods-communication
 
-### Architecture :
-```
-Make a request to the splitter container
-  - http://<node's-internal-ip>:30001/split/Sherlock,Po
-                |
-                ▼
-NodePort service configured to the splitter pod (at port 3001)
-                |
-                ▼
-1 splitter pod
-  - splits the request to 2 requests
-  - sends the 2 requests to the greeter pods
-    - using the ClusterIP service
-                |
-                ▼
-ClusterIP loadbalances the 2 requests
-                |
-                ▼
-2 greeter pods handle the requests
-  - if name starts with an 'S/s' => response = Hello S_named_person!
-    else                    => response = Greetings not_S_named_person!
-                |
-                ▼
-Responses from the 2 pods get back to the splitter pod
-  - Splitter pod concatenates the responses
-                |
-                ▼
-final response = Hello Sherlock! and Greetings Po!
-```
+### How it works :
+![Architecture Diagram](diagrams/10002.png)
 
 ### Setup
 #### 1. Build the images for splitter and greeter pods
