@@ -15,7 +15,7 @@ async fn forward_to_greeter(
     // let address = format!("{}:{}", greeter_host, greeter_port);
 
     // --------------new-approach----------------
-    let address = "name-greeter-pod-service.gojoclan.svc.cluster.local:70"; // not working for now :(
+    let address = "name-greeter-pod-service.gojoclan.svc.cluster.local:70"; // not not working for now :)
 
     let mut stream = match TcpStream::connect(&address).await {
         Ok(s) => {
