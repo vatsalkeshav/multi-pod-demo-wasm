@@ -25,7 +25,11 @@ edition = "2024"
 
 # -----------------new-approach------------------
 [dependencies]
-tokio_wasi = { version = "1.25.2", features = ["full"] }
+# tokio_wasi = { version = "1.25.2", features = ["full"] }
+tokio_wasi = { git = "https://github.com/WasmEdge/tokio.git", branch = "master", features = [
+    "full",
+] }
+
 
 futures = { version = "0.3.6", default-features = false, features = [
     "async-await",
